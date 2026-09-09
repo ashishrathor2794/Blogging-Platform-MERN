@@ -1,0 +1,1 @@
+import jwt from "jsonwebtoken";export default function(req,res,next){try{const t=req.cookies.token;if(!t)return res.status(401).json({message:"Login required"});req.user=jwt.verify(t,process.env.JWT_SECRET);next()}catch{return res.status(401).json({message:"Invalid session"})}}
